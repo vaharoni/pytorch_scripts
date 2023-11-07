@@ -9,7 +9,8 @@ setup(
       'humanize >= 4.8.0',
       'torch >= 2.0.1',
       'tqdm >= 4.66.1',
-      'matplotlib >= 3.7.2'
+      'matplotlib >= 3.7.2',
+      'tensorboard >= 2.14.0'
     ],
     # Optional metadata about your package:
     description='Training scripts for pytorch',
