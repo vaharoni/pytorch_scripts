@@ -470,7 +470,7 @@ class Model:
                             if phase == 'train':
                                 loss.backward()
                                 self.optimizer.step()
-                                if warmup_scheduler and warmup > global_epoch_start + local_epoch:
+                                if warmup_scheduler and warmup > local_epoch:
                                     warmup_scheduler.step()
 
                         metrics_manager.end_step(phase=phase, local_step=local_step, total_loss=loss.item() * inputs.shape[0], y_pred=y_pred, y_true=y_true)
@@ -881,7 +881,7 @@ class CheckpointTrainAPI:
               watch: str = 'loss', load_best: bool = True,
               epochs: int = 10, 
               patience: int = 0, 
-              warmup: int = 1, 
+              warmup: int = 0, 
               metrics: list[callable] = []):
         
         if self._train_method_call_count == 0:
