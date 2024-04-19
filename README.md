@@ -24,7 +24,7 @@ ckpts/
 
 ## Synopsis
 ```python
-from python_scripts import train
+from pytorch_scripts import train
 
 # model_builder() should return an nn.Module object
 model = train.Model('model-id', model_builder(), 'Model description')

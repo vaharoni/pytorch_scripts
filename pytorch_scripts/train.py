@@ -42,7 +42,7 @@ def _ensure_no_space(id):
     return str(id)
 
 _metric_factors = { 'loss': 1 }
-def _metric(name, higher_is_better=True):
+def metric(name, higher_is_better=True):
     """Decorator args:
         name - the metric name. Will be attached to a prefix: train_{name} or val_{name}
         higher_is_better - whether higher or lower value of the metric is desirable.
@@ -56,13 +56,13 @@ def _metric(name, higher_is_better=True):
 
 # = Training helpers
 
-# Metrics should return: [name, factor, value]. 
-# Factor is used to determine whether higher or lower value of the metric is desirable.  
-# It should be either 1 (minimize) or -1 (maximize)
-
-@_metric('accuracy')
+@metric('accuracy')
 def metric_accuracy(y_pred, y_true):
     return torch.sum(torch.argmax(y_pred, dim=-1) == y_true).item()
+
+@metric('binaccuracy')
+def metric_binaccuracy(y_pred, y_true):
+    return torch.sum(torch.round(y_pred) == y_true).item()
 
 class EarlyStopException(Exception): pass
 
