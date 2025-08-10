@@ -17,7 +17,7 @@ from copy import deepcopy
 root_folder = Path('..')
 model_checkpoint_sep = '-'
 noetbook_namespace = None
-device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+device = torch.accelerator.current_accelerator() if torch.accelerator.is_available() else "cpu"
 
 def set_root_folder(root):
     global root_folder
